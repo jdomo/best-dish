@@ -7,7 +7,14 @@
   <title>Dishes Index</title>
 </head>
 <body>
-  <h1>Dishes</h1>
-  
+  <h1>All Dishes</h1>
+  <ul class="dishes">
+  <% for (let i = 0; i < dishes.length; i += 1) { %>
+    <li>
+      <a href="/dishes/dishes[i]._id"><img src="<%= dishes[i].dishImg %>"></a>
+      <a href="/dishes/dishes[i]._id"><%= dishes[i].dishName %> @ <%= dishes[i].restaurant.name %></a>
+    </li>
+  <% } %>
+  </ul>
 </body>
 </html>
