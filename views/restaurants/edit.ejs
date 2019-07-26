@@ -23,7 +23,7 @@
     </header>    
     <main>
       <h2>Edit Restaurant</h2>
-      <form action="/restaurants/<%= restaurant._id %>" method="POST">
+      <form action="/restaurants/<%=restaurant._id%>?_method=PUT" method="post">
         <label>Restaurant name:</label></br>
         <input type="text" name="name" value="<%= restaurant.name %>"></br>
         <label>Location:</label></br>
