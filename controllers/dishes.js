@@ -36,7 +36,29 @@ router.get('/new', (req, res)=>{
   
   });
 
-  // put
+// post
+router.post('/', async (req, res) =>{
+    try {
+      const createdDish = await Dish.create(req.body);
+  
+      console.log('------------')
+      console.log(createdDish, 'in post route')
+      console.log('------------')
+  
+      const foundRestaurant = await Restaurant.findById(req.body.authorId);
+      console.log(foundRestaurant)
+  
+      foundRestaurant.dishes.push(createdDish);
+      await foundRestaurant.save()
+  
+        res.redirect('/dishes')
+  
+    } catch (err) {
+      res.send(err)
+    }
+  });
+
+// put
 router.put('/:id', async (req, res) => {
     try  {
   
@@ -49,5 +71,7 @@ router.put('/:id', async (req, res) => {
      res.send(err);
    }
   });
+
+
 
   module.exports = router
