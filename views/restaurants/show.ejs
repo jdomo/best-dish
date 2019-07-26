@@ -22,6 +22,11 @@
       </nav>
     </header>    
     <main>
+    <ul>
+          <% for (let i = 0; i < restaurant.dishes.length; i++) {%>
+            <li><a href="/dishes/<%=restaurant.dishes[i]._id%>"><%=restaurant.dishes[i].dishName%></a></li>
+          <%}%>
+        </ul>
       <h3>All about <%= restaurant.name %></h3>
       <ul>
         <li>Location: <%= restaurant.location %></li>
