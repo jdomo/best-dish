@@ -16,3 +16,23 @@ router.get('/', async (req, res)=>{
       res.send(err);
     }
   });
+
+// new
+router.get('/new', (req, res)=>{
+    
+    Restaurant.find({}, (err, allRestaurants) => {
+      if(err){
+        res.send(err);
+      } else {
+        console.log(allRestaurants, "< -- new route in dishes ")
+        console.log('restaurants array ^^^^^^^^^^^^^');
+        res.render('dishes/new.ejs', {
+          restaurants: allRestaurants
+        });
+  
+      }
+    })
+  
+  });
+
+  module.exports = router
