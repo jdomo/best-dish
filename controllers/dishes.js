@@ -49,6 +49,27 @@ router.put('/:id', async (req, res) => {
     }
 });
 
+// edit
+router.get('/:id/edit', async (req, res) => {
+    try  {
+     console.log('<---- in edit route')
+     const allRestaurants = await Restaurant.find({})
+     const foundDishRestaurant = await Restaurant.findOne({
+       'dishes': req.params.id}).populate({path: 'dishes', match:{_id: req.params.id}});
+  
+       console.log(foundDishRestaurant.dishes[0])
+     res.render('dishes/edit.ejs', {
+       dish: foundDishRestaurant.dishes[0],
+       restaurants: allRestaurants,
+       dishRestaurant: foundDishRestaurant
+     });
+  
+   } catch (err){
+     res.send(err);
+  
+   }
+  });
+
 // post
 router.post('/', async (req, res) =>{
     try {

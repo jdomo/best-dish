@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Edit Dish</title>
+  </head>
+  <body>
+    <header>
+      <h1><%= dish.dishName %></h1>
+      <nav>
+        <ul>
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <li>
+            <a href="/restaurants">Restaurants</a>
+          </li>
+          <li>
+            <a href="/users">Users</a>
+          </li>
+        </ul>
+      </nav>
+    </header>    
+    <main>
+      <h2>Edit Dish</h2>
+      <form action="/dishes/<%= dish._id %>" method="POST">
+        <label>Name of dish:</label></br>
+        <input type="text" name="dishName" value="<%= dish.dishName %>"></br>
+        <label>Category:</label></br>
+        <input type="text" name="dishCategory" value="<%= dish.dishCategory %>"></br>
+        <label>Description:</label></br>
+        <input type="text" name="dishDescribe" value="<%= dish.dishDescribe %>"></br>
+        <label>Image:</label></br>
+        <input type="text" name="dishImg" value="<%= dish.dishImg %>"></br>
+        <label>Cost:</label></br>
+        <input type="text" name="cost" value="<%= dish.cost %>"></br>
+        <input type="submit" value="Submit">
+      </form>
+    </main>
+  </body>
+</html>

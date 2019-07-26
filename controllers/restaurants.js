@@ -23,6 +23,21 @@ router.get('/new', (req, res) => {
     res.render('restaurants/new.ejs')
   });
 
+// edit
+router.get('/:id/edit', async (req, res, next) => {
+    try  {
+  
+     const foundRestaurant = await Restaurant.findById(req.params.id);
+  
+     res.render('restaurants/edit.ejs', {
+       restaurant: foundRestaurant,
+     });
+  
+   } catch (err){
+     res.send(err);
+   }
+  });
+
 // put
 router.put('/:id', async (req, res) => {
     try  {
