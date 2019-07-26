@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <header>
+      <h1>Dishes</h1>
+      <nav>
+        <ul>
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <li>
+            <a href="/articles/new">Create a new Dish</a>
+          </li>
+        </ul>
+      </nav>
+      <main>
+        <h2>List of Dishes</h2>
+        <ul>
+          <% for(let i = 0; i < dishes.length; i++){ %>
+            <li>
+              <a href="/dishes/<%=dishes[i]._id%>"><%=dishes[i].name%></a>
+            </li>
+          <% } %>
+        </ul>
+      </main>
+    </header>
+  </body>
+</html>
