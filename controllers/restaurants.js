@@ -21,5 +21,19 @@ router.get('/', async (req, res)=>{
 router.get('/new', (req, res) => {
     res.render('restaurants/new.ejs')
   });
+
+// put
+router.put('/:id', async (req, res) => {
+    try  {
+   
+    const updatedRestaurant = await Restaurant.findByIdAndUpdate(req.params.id, req.body, {new: true});
+    console.log(updatedRestaurant);
+  
+    res.redirect('/restaurants');
+  
+    } catch (err){
+      res.send(err);
+    }
+  });
   
 module.exports = router;
