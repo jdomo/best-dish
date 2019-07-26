@@ -18,6 +18,9 @@
           <li>
             <a href="/users">Users</a>
           </li>
+          <li>
+          <a href="/dishes/new">Create A New Dish</a>
+          </li>
         </ul>
       </nav>
     </header>    
@@ -26,7 +29,7 @@
       <ul>
         <% for(let i = 0; i < dishes.length; i++){ %>
           <li>
-            <a href="/dishes/<%=dishes[i]._id%>"><%=dishes[i].name%></a>
+            <a href="/dishes/<%=dishes[i]._id%>"><%=dishes[i].dishName%></a>
           </li>
         <% } %>
       </ul>
