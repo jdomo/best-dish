@@ -26,12 +26,18 @@
       <form action="/dishes" method="POST">
         <label>Name of dish:</label></br>
         <input type="text" name="dishName" placeholder="Dish name"></br>
+        <label>Restaurant:</label></br>
+          <select name="restaurant">
+            <% for (let i = 0; i < restaurants.length; i += 1) {%>
+              <option value="<%=restaurants[i]._id%>"><%=restaurants[i].name%></option>
+            <% } %>
+          </select>
         <label>Category:</label></br>
         <input type="text" name="dishCategory" placeholder="Category (e.g. Korean, Vietnamese)"></br>
         <label>Description:</label></br>
-        <input type="text" name="dishDescribe" placeholder="Describe it!"></br>
+        <input type="text" name="dishDescribe" placeholder="Why do you love this dish?"></br>
         <label>Image:</label></br>
-        <input type="text" name="dishImg" placeholder="Image URL"></br>
+        <input type="text" name="dishImg" placeholder="Paste URL here"></br>
         <label>Cost:</label></br>
         <input type="text" name="cost" placeholder="How much does it cost?"></br>
       </form>
