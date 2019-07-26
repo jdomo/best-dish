@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Dishes Index</title>
+  </head>
+  <body>
+    <header>
+      <h1>Dishes</h1>
+      <nav>
+        <ul>
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <li>
+            <a href="/restaurants">Restaurants</a>
+          </li>
+          <li>
+            <a href="/users">Users</a>
+          </li>
+        </ul>
+      </nav>
+    </header>    
+    <main>
+      <h2>New Dish</h2>
+      <form action="/dishes" method="POST">
+        <label>Name of dish:</label></br>
+        <input type="text" name="dishName" placeholder="Dish name"></br>
+        <label>Restaurant:</label></br>
+          <select name="restaurant">
+            <% for (let i = 0; i < restaurants.length; i += 1) {%>
+              <option value="<%=restaurants[i]._id%>"><%=restaurants[i].name%></option>
+            <% } %>
+          </select>
+        <label>Category:</label></br>
+        <input type="text" name="dishCategory" placeholder="Category (e.g. Korean, Vietnamese)"></br>
+        <label>Description:</label></br>
+        <input type="text" name="dishDescribe" placeholder="Describe it!"></br>
+        <label>Image:</label></br>
+        <input type="text" name="dishImg" placeholder="Image URL"></br>
+        <label>Cost:</label></br>
+        <input type="text" name="cost" placeholder="How much does it cost?"></br>
+      </form>
+    </main>
+  </body>
+</html>
