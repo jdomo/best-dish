@@ -7,8 +7,8 @@ const app             = express();
 require('./db/db');
 
 const dishesController = require('./controllers/dishes.js');
-const restaurantsController = require('./controllers/restaurants.js');
-const usersController = require('./controllers/users.js')
+// const restaurantsController = require('./controllers/restaurants.js');
+// const usersController = require('./controllers/users.js')
 
 app.use(session({
     secret: 'RANDOM SECRET STRING',
@@ -21,8 +21,8 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(methodOverride('_method'));
 
 app.use('/dishes', dishesController);
-app.use('/restaurants', restaurantsController);
-app.use('/auth', usersController)
+// app.use('/restaurants', restaurantsController);
+// app.use('/auth', usersController)
 
 app.get('/', (req, res) => {
     res.render('index.ejs')
