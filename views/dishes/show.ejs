@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title><%= dish.dishName %></title>
+  </head>
+  <body>
+    <header>
+      <h1><%= dish.dishName %></h1>
+      <nav>
+        <ul>
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <li>
+            <a href="/restaurants">Restaurants</a>
+          </li>
+          <li>
+            <a href="/users">Users</a>
+          </li>
+        </ul>
+      </nav>
+    </header>    
+    <main>
+      <h3>All about <%= dish.dishName %></h3>
+      <ul>
+        <li>Dish name: <%=dish.name%></li>
+        <li>Category: <%=dish.dishCategory%></li>
+        <li>Description: <%=dish.dishDescribe%></li>
+        <li>Cost: <%=dish.cost%></li>
+        <li>Dish name: <%=dish.name%></li></br>
+        <li>Posted by: <%=dish.postedBy.username%></li>
+        <img src="<%= dish.dishImg %>">
+      </ul>
+    </main>
+  </body>
+</html>
