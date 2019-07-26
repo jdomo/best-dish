@@ -13,20 +13,23 @@
             <a href="/">Home</a>
           </li>
           <li>
-            <a href="/dishes/new">Create a new Dish</a>
+            <a href="/restaurants">Restaurants</a>
+          </li>
+          <li>
+            <a href="/users">Users</a>
           </li>
         </ul>
       </nav>
-      <main>
-        <h2>List of Dishes</h2>
-        <ul>
-          <% for(let i = 0; i < dishes.length; i++){ %>
-            <li>
-              <a href="/dishes/<%=dishes[i]._id%>"><%=dishes[i].name%></a>
-            </li>
-          <% } %>
-        </ul>
-      </main>
-    </header>
+    </header>    
+    <main>
+      <h2>List of Dishes</h2>
+      <ul>
+        <% for(let i = 0; i < dishes.length; i++){ %>
+          <li>
+            <a href="/dishes/<%=dishes[i]._id%>"><%=dishes[i].name%></a>
+          </li>
+        <% } %>
+      </ul>
+    </main>
   </body>
 </html>

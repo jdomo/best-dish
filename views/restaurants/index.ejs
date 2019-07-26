@@ -7,14 +7,32 @@
   <title>Restaurants Index</title>
 </head>
 <body>
-  <h1>All Restaurants</h1>
-  <ul class="restaurants">
-  <% for (let i = 0; i < restaurants.length; i += 1) { %>
-    <li>
-      <a href="/restaurants/restaurants[i]._id"><%= restaurants[i].name %></a></br>
-      <%= restaurants[i].location %>
-    </li>
-  <% } %>
-  </ul>
+  <header>
+      <h1>Restaurants</h1>
+      <nav>
+        <ul>
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <li>
+            <a href="/dishes">Dishes</a>
+          </li>
+          <li>
+            <a href="/users">Users</a>
+          </li>
+        </ul>
+      </nav>
+  </header>   
+  <main> 
+    <h1>All Restaurants</h1>
+    <ul class="restaurants">
+    <% for (let i = 0; i < restaurants.length; i += 1) { %>
+      <li>
+        <a href="/restaurants/restaurants[i]._id"><%= restaurants[i].name %></a></br>
+        <%= restaurants[i].location %>
+      </li>
+    <% } %>
+    </ul>
+  </main>
 </body>
 </html>
