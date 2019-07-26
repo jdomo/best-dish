@@ -52,6 +52,22 @@ router.put('/:id', async (req, res) => {
     }
   });
 
+// show 
+router.get('/:id', async (req, res) => {
+    try  {
+  
+     const foundRestaurant = await Restaurant.findById(req.params.id).populate('dishes');
+  
+     res.render('restaurants/show.ejs', {
+       restaurant: foundRestaurant,
+     });
+  
+   } catch (err){
+  
+     res.send(err);
+   }
+  });
+
 // post
 router.post('/', async (req, res) => {
     try  {
