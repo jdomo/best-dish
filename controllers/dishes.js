@@ -49,6 +49,33 @@ router.put('/:id', async (req, res) => {
     }
 });
 
+// show
+router.get('/:id', async (req, res) => {
+
+    try {
+  
+      const foundRestaurant = await Restaurant.findOne({'dishes': req.params.id}).populate('dishes')
+      console.log(foundRestaurant);
+  
+      let dish = {};
+  
+      for( let i = 0; i < foundRestaurant.dishes.length; i++) {
+        if(foundRestaurant.dishes[i]._id.toString() === req.params.id.toString()) {
+          dish = foundRestaurant.dishes[i];
+          console.log(dish, " < the dish")
+        }
+      }
+  
+      res.render('dishes/show.ejs', {
+        restaurant: foundRestaurant,
+        dish: dish
+      })
+  
+    } catch(err) {
+      res.send(err);
+    }
+  });
+
 // edit
 router.get('/:id/edit', async (req, res) => {
     try  {
