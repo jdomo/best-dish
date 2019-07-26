@@ -16,6 +16,10 @@ app.use(bodyParser.urlencoded({extended:false}));
 
 app.use(methodOverride('_method'));
 
+app.get('/', (req, res) => {
+    res.render('index.ejs')
+  });
+
 app.listen(3000, () => {
     console.log('listening..... on port 3000');
   });
