@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title><%= user.username %></title>
+  </head>
+  <body>
+    <header>
+      <h1><%= user.username %></h1>
+      <nav>
+        <ul>
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <li>
+            <a href="/restaurants">Restaurants</a>
+          </li>
+          <li>
+            <a href="/users">Users</a>
+          </li>
+        </ul>
+      </nav>
+    </header>    
+    <main>
+      <h3><%= user.username %>'s Favorite Dishes</h3>
+      <ul>
+        <% for (let i = 0; i < user.favDishes.length; i += 1) { %>
+        <ul>
+          <li>Dish name: <a href="/dishes/<%=user.favDishes[i]._id%>"><%= user.favDishes[i].dishName %></a></li>
+        </ul>
+        <% } %>
+      </ul>
+    </main>
+  </body>
+</html>
