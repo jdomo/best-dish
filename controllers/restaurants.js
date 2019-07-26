@@ -35,5 +35,19 @@ router.put('/:id', async (req, res) => {
       res.send(err);
     }
   });
+
+// post
+router.post('/', async (req, res) => {
+    try  {
+  
+     const createdRestaurant = await Restaurant.create(req.body);
+     console.log(createdRestaurant)
+     res.redirect('/restaurants');
+  
+   } catch (err){
+     res.send(err);
+  
+   }
+  });
   
 module.exports = router;
