@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const Restaurant = require('../models/Restaurant');
+const Dish = require('../models/Dish')
 
 // index
 router.get('/', async (req, res)=>{
-    console.log(req.session, 'req.session in index or article')
+    console.log(req.session, 'req.session in index or dish')
     try {
       
       const foundRestaurants = await Restaurant.find();

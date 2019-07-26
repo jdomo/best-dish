@@ -33,8 +33,21 @@ router.get('/new', (req, res)=>{
   
       }
     })
-  
   });
+
+// put
+router.put('/:id', async (req, res) => {
+    try  {
+    
+    const updatedRestaurant = await Restaurant.findByIdAndUpdate(req.params.id, req.body, {new: true});
+    console.log(updatedRestaurant)
+  
+    res.redirect('/dishes')
+    
+    } catch (err){
+        res.send(err);
+    }
+});
 
 // post
 router.post('/', async (req, res) =>{
@@ -45,7 +58,7 @@ router.post('/', async (req, res) =>{
       console.log(createdDish, 'in post route')
       console.log('------------')
   
-      const foundRestaurant = await Restaurant.findById(req.body.authorId);
+      const foundRestaurant = await Restaurant.findById(req.body.restaurant);
       console.log(foundRestaurant)
   
       foundRestaurant.dishes.push(createdDish);
@@ -57,21 +70,5 @@ router.post('/', async (req, res) =>{
       res.send(err)
     }
   });
-
-// put
-router.put('/:id', async (req, res) => {
-    try  {
   
-    const updatedRestaurant = await Restaurant.findByIdAndUpdate(req.params.id, req.body, {new: true});
-    console.log(updatedRestaurant)
-
-    res.redirect('/restaurants')
-  
-   } catch (err){
-     res.send(err);
-   }
-  });
-
-
-
-  module.exports = router
+module.exports = router
