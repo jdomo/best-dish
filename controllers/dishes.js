@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Dish = require('../models/Dish');
+const Restaurant = require('../model/Restaurant')
 
 // index
 router.get('/', async (req, res)=>{
