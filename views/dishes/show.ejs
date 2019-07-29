@@ -38,7 +38,9 @@
           </form>
       </section>
       <section>
-          <a href="/dishes/<%=dish._id%>/edit">Edit</a>
+        <form action="/dishes/<%=dish._id%>/edit">
+				  <input type="submit" value="Edit Dish"/>
+				</form>
       </section>
     </main>
   </body>

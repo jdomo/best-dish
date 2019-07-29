@@ -30,24 +30,9 @@ router.get('/new', (req, res)=>{
         res.render('dishes/new.ejs', {
           restaurants: allRestaurants
         });
-  
       }
     })
   });
-
-// put
-router.put('/:id', async (req, res) => {
-    try  {
-    
-    const updatedRestaurant = await Restaurant.findByIdAndUpdate(req.params.id, req.body, {new: true});
-    console.log(updatedRestaurant)
-  
-    res.redirect('/dishes')
-    
-    } catch (err){
-        res.send(err);
-    }
-});
 
 // show
 router.get('/:id', async (req, res) => {
@@ -77,27 +62,6 @@ router.get('/:id', async (req, res) => {
     }
   });
 
-// edit
-router.get('/:id/edit', async (req, res) => {
-    try  {
-     console.log('<---- in edit route')
-     const allRestaurants = await Restaurant.find({})
-     const foundDishRestaurant = await Restaurant.findOne({
-       'dishes': req.params.id}).populate({path: 'dishes', match:{_id: req.params.id}});
-  
-       console.log(foundDishRestaurant.dishes[0])
-     res.render('dishes/edit.ejs', {
-       dish: foundDishRestaurant.dishes[0],
-       restaurants: allRestaurants,
-       dishRestaurant: foundDishRestaurant
-     });
-  
-   } catch (err){
-     res.send(err);
-  
-   }
-  });
-
 // post
 router.post('/', async (req, res) =>{
     try {
@@ -120,6 +84,29 @@ router.post('/', async (req, res) =>{
     }
   });
 
+// edit
+router.get('/:id/edit', async (req, res) => {
+    try  {
+     console.log('<---- in edit route')
+     const allRestaurants = await Restaurant.find({})
+     console.log(allRestaurants, "<--allRestaurants")
+     const foundDishRestaurant = await Restaurant.findOne({
+       'dishes': req.params.id}).populate({path: 'dishes', match:{_id: req.params.id}});
+  
+       console.log(foundDishRestaurant.dishes[0], "<---foundDishRestaurant")
+     res.render('dishes/edit.ejs', {
+       dish: foundDishRestaurant.dishes[0],
+       restaurants: allRestaurants,
+       dishRestaurant: foundDishRestaurant
+     });
+  
+   } catch (err){
+    console.log(err)
+    res.send(err);
+  
+   }
+  });
+
 // delete
 router.delete('/:id', async (req, res) => {
     try {
@@ -137,5 +124,19 @@ router.delete('/:id', async (req, res) => {
     }
 
     })
+
+// put
+router.put('/:id', async (req, res) => {
+    try  {
+    
+    const updatedRestaurant = await Restaurant.findByIdAndUpdate(req.params.id, req.body, {new: true});
+    console.log(updatedRestaurant)
+  
+    res.redirect('/dishes')
+    
+    } catch (err){
+        res.send(err);
+    }
+});
   
 module.exports = router

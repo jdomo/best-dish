@@ -23,7 +23,19 @@
     </header>    
     <main>
       <h2>Edit Dish</h2>
-      <form action="/dishes/<%=dish._id%>?_method=PUT" method="post">
+         <form action="/dishes/<%=dish._id%>?_method=PUT" method="post">
+    <select name="restaurantId">
+        <% for(let i = 0; i < restaurants.length; i++) { %>
+            <option
+                value="<%=restaurants[i]._id%>"
+                <% if(restaurants[i]._id.toString() === dishRestaurant._id.toString()){ %>
+                    selected
+                <% } %>
+                >
+                <%=restaurants[i].name%>
+            </option>
+        <% } %>
+    </select><br/>
         <label>Name of dish:</label></br>
         <input type="text" name="dishName" value="<%= dish.dishName %>"></br>
         <label>Category:</label></br>
