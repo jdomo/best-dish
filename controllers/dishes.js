@@ -129,8 +129,8 @@ router.delete('/:id', async (req, res) => {
 router.put('/:id', async (req, res) => {
     try  {
     
-    const updatedRestaurant = await Restaurant.findByIdAndUpdate(req.params.id, req.body, {new: true});
-    console.log(updatedRestaurant)
+    const updatedDish = await Dish.findByIdAndUpdate(req.params.id, req.body, {new: true});
+    console.log(updatedDish, "<---updated dish")
   
     res.redirect('/dishes')
     
