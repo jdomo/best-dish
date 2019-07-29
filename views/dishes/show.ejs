@@ -24,7 +24,7 @@
     <main>
       <h3>All about <%= dish.dishName %></h3>
       <ul>
-        <li>Dish name: <%=dish.name%></li>
+        <li>Dish name: <%=dish.dishName%></li>
         <li>Category: <%=dish.dishCategory%></li>
         <li>Description: <%=dish.dishDescribe%></li>
         <li>Cost: <%=dish.cost%></li>
@@ -32,6 +32,14 @@
         <li>Posted by: <%=dish.postedBy.username%></li>
         <img src="<%= dish.dishImg %>">
       </ul>
+      <section>
+          <form action="/dishes/<%=dish._id%>?_method=DELETE" method="post">
+              <input type="submit" value="Delete Dish"/>
+          </form>
+      </section>
+      <section>
+          <a href="/dishes/<%=dish._id%>/edit">Edit</a>
+      </section>
     </main>
   </body>
 </html>

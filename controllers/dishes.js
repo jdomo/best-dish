@@ -119,5 +119,23 @@ router.post('/', async (req, res) =>{
       res.send(err)
     }
   });
+
+// delete
+router.delete('/:id', async (req, res) => {
+    try {
+      const deletedDish = await Dish.findByIdAndRemove(req.params.id);
+      console.log(deletedDish);
+
+      const foundRestaurant = await Restaurant.findOne({'dishes': req.params.id});
+      console.log(foundRestaurant);
+      foundRestaurant.dishes.remove(req.params.id);
+      res.redirect('/dishes')
+
+
+    } catch(err) {
+      res.send(err)
+    }
+
+    })
   
 module.exports = router
