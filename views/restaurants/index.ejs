@@ -31,7 +31,7 @@
     <ul class="restaurants">
     <% for (let i = 0; i < restaurants.length; i += 1) { %>
       <li>
-        <a href="/restaurants/restaurants[i]._id"><%= restaurants[i].name %></a></br>
+        <a href="/restaurants/<%=restaurants[i]._id%>"><%= restaurants[i].name %></a></br>
         <%= restaurants[i].location %>
       </li>
     <% } %>
