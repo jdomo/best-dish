@@ -20,7 +20,7 @@
           </li>
         </ul>
       </nav>
-    </header>    
+    </header>
     <main>
       <h3>All about <%= dish.dishName %></h3>
       <ul>
@@ -29,7 +29,7 @@
         <li>Description: <%=dish.dishDescribe%></li>
         <li>Cost: <%=dish.cost%></li>
         <li>Find it at: <%=dish.restaurant.name%></li></br>
-        <li>Posted by: <%=dish.postedBy.username%></li>
+        <li>Posted by: <%=foundDish.postedBy[0].username%></li>
         <img src="<%= dish.dishImg %>">
       </ul>
       <section>

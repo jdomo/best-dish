@@ -44,7 +44,7 @@ router.put('/:id', async (req, res) => {
     try  {
    
     const updatedRestaurant = await Restaurant.findByIdAndUpdate(req.params.id, req.body, {new: true});
-    console.log(updatedRestaurant);
+    // console.log(updatedRestaurant);
   
     res.redirect('/restaurants');
   
