@@ -55,7 +55,7 @@ router.get('/:id', async (req, res) => {
     try {
   
       const foundRestaurant = await Restaurant.findOne({'dishes': req.params.id}).populate('dishes')
-      console.log(foundRestaurant);
+      console.log(foundRestaurant, "<======= found rest");
   
       let dish = {};
   
@@ -72,6 +72,7 @@ router.get('/:id', async (req, res) => {
       })
   
     } catch(err) {
+        console.log(err)
       res.send(err);
     }
   });

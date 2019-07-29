@@ -20,6 +20,7 @@ router.get('/', async (req, res)=>{
 
 //new
 router.get('/new', (req, res) => {
+    Restaurant.create();
     res.render('restaurants/new.ejs')
   });
 
@@ -81,5 +82,24 @@ router.post('/', async (req, res) => {
   
    }
   });
+
+// delete
+router.delete('/:id', async (req, res) => {
+  try {
+    const deletedRestaurant = await Restaurant.findByIdAndRemove(req.params.id);
+    console.log(deletedRestaurant);
+
+    const foundRestaurant = await Restaurant.findOne({'dishes': req.params.id});
+    console.log(foundRestaurant, "<---found restaurant");
+    foundRestaurant.dishes.remove(req.params.id);
+    res.redirect('/restaurants')
+
+
+  } catch(err) {
+    console.log(err)
+    res.send(err)
+  }
+
+  })
   
 module.exports = router;
