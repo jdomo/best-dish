@@ -30,44 +30,36 @@ router.get('/new', (req, res)=>{
         res.render('dishes/new.ejs', {
           restaurants: allRestaurants
         });
-  
       }
     })
   });
 
-// put
-router.put('/:id', async (req, res) => {
-    try  {
-    
-    const updatedRestaurant = await Restaurant.findByIdAndUpdate(req.params.id, req.body, {new: true});
-    console.log(updatedRestaurant)
-  
-    res.redirect('/dishes')
-    
-    } catch (err){
-        res.send(err);
-    }
-});
+// show
+router.get('/:id', async (req, res) => {
 
-// edit
-router.get('/:id/edit', async (req, res) => {
-    try  {
-     console.log('<---- in edit route')
-     const allRestaurants = await Restaurant.find({})
-     const foundDishRestaurant = await Restaurant.findOne({
-       'dishes': req.params.id}).populate({path: 'dishes', match:{_id: req.params.id}});
+    try {
   
-       console.log(foundDishRestaurant.dishes[0])
-     res.render('dishes/edit.ejs', {
-       dish: foundDishRestaurant.dishes[0],
-       restaurants: allRestaurants,
-       dishRestaurant: foundDishRestaurant
-     });
+      const foundRestaurant = await Restaurant.findOne({'dishes': req.params.id}).populate('dishes')
+      console.log(foundRestaurant, "<======= found rest");
   
-   } catch (err){
-     res.send(err);
+      let dish = {};
   
-   }
+      for( let i = 0; i < foundRestaurant.dishes.length; i++) {
+        if(foundRestaurant.dishes[i]._id.toString() === req.params.id.toString()) {
+          dish = foundRestaurant.dishes[i];
+          console.log(dish, " < the dish")
+        }
+      }
+  
+      res.render('dishes/show.ejs', {
+        restaurant: foundRestaurant,
+        dish: dish
+      })
+  
+    } catch(err) {
+        console.log(err)
+      res.send(err);
+    }
   });
 
 // post
@@ -91,5 +83,60 @@ router.post('/', async (req, res) =>{
       res.send(err)
     }
   });
+
+// edit
+router.get('/:id/edit', async (req, res) => {
+    try  {
+     console.log('<---- in edit route')
+     const allRestaurants = await Restaurant.find({})
+     console.log(allRestaurants, "<--allRestaurants")
+     const foundDishRestaurant = await Restaurant.findOne({
+       'dishes': req.params.id}).populate({path: 'dishes', match:{_id: req.params.id}});
+  
+       console.log(foundDishRestaurant.dishes[0], "<---foundDishRestaurant")
+     res.render('dishes/edit.ejs', {
+       dish: foundDishRestaurant.dishes[0],
+       restaurants: allRestaurants,
+       dishRestaurant: foundDishRestaurant
+     });
+  
+   } catch (err){
+    console.log(err)
+    res.send(err);
+  
+   }
+  });
+
+// delete
+router.delete('/:id', async (req, res) => {
+    try {
+      const deletedDish = await Dish.findByIdAndRemove(req.params.id);
+      console.log(deletedDish);
+
+      const foundRestaurant = await Restaurant.findOne({'dishes': req.params.id});
+      console.log(foundRestaurant);
+      foundRestaurant.dishes.remove(req.params.id);
+      res.redirect('/dishes')
+
+
+    } catch(err) {
+      res.send(err)
+    }
+
+    })
+
+// put
+router.put('/:id', async (req, res) => {
+    try  {
+    
+    const updatedDish = await Dish.findByIdAndUpdate(req.params.id, req.body, {new: true});
+    console.log(updatedDish, "<---updated dish")
+  
+    res.redirect('/dishes')
+    
+    } catch (err){
+        res.send(err);
+    }
+});
   
 module.exports = router

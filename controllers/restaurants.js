@@ -20,6 +20,7 @@ router.get('/', async (req, res)=>{
 
 //new
 router.get('/new', (req, res) => {
+    Restaurant.create();
     res.render('restaurants/new.ejs')
   });
 
@@ -52,6 +53,22 @@ router.put('/:id', async (req, res) => {
     }
   });
 
+// show 
+router.get('/:id', async (req, res) => {
+    try  {
+  
+     const foundRestaurant = await Restaurant.findById(req.params.id).populate('dishes');
+  
+     res.render('restaurants/show.ejs', {
+       restaurant: foundRestaurant,
+     });
+  
+   } catch (err){
+  
+     res.send(err);
+   }
+  });
+
 // post
 router.post('/', async (req, res) => {
     try  {
@@ -65,5 +82,43 @@ router.post('/', async (req, res) => {
   
    }
   });
+
+// delete
+router.delete('/:id', async (req, res) => {
+  try {
+
+    const deletedRestaurant = await Restaurant.findOneAndDelete(req.params.id);
+ 
+ 
+      const deletedDishes = await Dish.deleteMany({
+        _id: {
+          $in: deletedRestaurant.dishes
+        }
+      });
+
+      console.log(deletedDishes)
+ 
+      res.redirect('/restaurants');
+  } catch(err){
+    res.send(err)
+  }
+  });
+// router.delete('/:id', async (req, res) => {
+//   try {
+//     const deletedRestaurant = await Restaurant.findByIdAndRemove(req.params.id);
+//     console.log(deletedRestaurant);
+
+//     const foundRestaurant = await Restaurant.findOne({'dishes': req.params.id});
+//     console.log(foundRestaurant, "<---found restaurant");
+//     foundRestaurant.dishes.remove(req.params.id);
+//     res.redirect('/restaurants')
+
+
+//   } catch(err) {
+//     console.log(err)
+//     res.send(err)
+//   }
+
+//   })
   
 module.exports = router;

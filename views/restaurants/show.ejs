@@ -22,10 +22,24 @@
       </nav>
     </header>    
     <main>
+    Dishes:
+    <ul>
+          <% for (let i = 0; i < restaurant.dishes.length; i++) {%>
+            <li><a href="/dishes/<%=restaurant.dishes[i]._id%>"><%=restaurant.dishes[i].dishName%></a></li>
+          <%}%>
+        </ul>
       <h3>All about <%= restaurant.name %></h3>
       <ul>
         <li>Location: <%= restaurant.location %></li>
       </ul>
+         <section>
+          <form action="/restaurants/<%=restaurant._id%>?_method=DELETE" method="POST">
+              <input type="submit" value="Delete Restaurant"/>
+          </form>
+      </section>
+      <section>
+          <a href="/restaurants/<%=restaurant._id%>/edit">Edit</a>
+      </section>
     </main>
   </body>
 </html>
