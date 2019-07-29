@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Dish = require('../models/Dish');
 const Restaurant = require('../models/Restaurant')
+const User = require('../models/User')
 
 // index
 router.get('/', async (req, res)=>{
@@ -40,7 +41,7 @@ router.get('/:id', async (req, res) => {
     try {
   
       const foundRestaurant = await Restaurant.findOne({'dishes': req.params.id}).populate('dishes')
-      console.log(foundRestaurant, "<======= found rest");
+      const foundDish = await Dish.findOne({'_id': req.params.id}).populate('postedBy')
   
       let dish = {};
   
@@ -53,7 +54,8 @@ router.get('/:id', async (req, res) => {
   
       res.render('dishes/show.ejs', {
         restaurant: foundRestaurant,
-        dish: dish
+        dish: dish,
+        foundDish: foundDish
       })
   
     } catch(err) {
@@ -66,20 +68,22 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) =>{
     try {
       const createdDish = await Dish.create(req.body);
-  
-      console.log('------------')
-      console.log(createdDish, 'in post route')
-      console.log('------------')
-  
+      
+      
       const foundRestaurant = await Restaurant.findById(req.body.restaurant);
-      console.log(foundRestaurant)
-  
       foundRestaurant.dishes.push(createdDish);
-      await foundRestaurant.save()
-  
-        res.redirect('/dishes')
+      await foundRestaurant.save();
+
+      const foundUser = await User.findById(req.session.userId);
+      createdDish.postedBy.push(foundUser._id);
+      await createdDish.save();
+
+      console.log(createdDish, '<--- createdDish');
+
+      res.redirect('/dishes');
   
     } catch (err) {
+      console.log(err)
       res.send(err)
     }
   });
@@ -90,20 +94,19 @@ router.get('/:id/edit', async (req, res) => {
      console.log('<---- in edit route')
      const allRestaurants = await Restaurant.find({})
      console.log(allRestaurants, "<--allRestaurants")
-     const foundDishRestaurant = await Restaurant.findOne({
-       'dishes': req.params.id}).populate({path: 'dishes', match:{_id: req.params.id}});
+     const foundDishRestaurant = await Restaurant.findOne({'dishes': req.params.id})
+       .populate({path: 'dishes', match:{_id: req.params.id}});
   
        console.log(foundDishRestaurant.dishes[0], "<---foundDishRestaurant")
      res.render('dishes/edit.ejs', {
        dish: foundDishRestaurant.dishes[0],
        restaurants: allRestaurants,
        dishRestaurant: foundDishRestaurant
-     });
+   });
   
    } catch (err){
     console.log(err)
     res.send(err);
-  
    }
   });
 
@@ -117,7 +120,6 @@ router.delete('/:id', async (req, res) => {
       console.log(foundRestaurant);
       foundRestaurant.dishes.remove(req.params.id);
       res.redirect('/dishes')
-
 
     } catch(err) {
       res.send(err)
