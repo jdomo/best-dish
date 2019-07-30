@@ -44,18 +44,18 @@ router.get('/:id', async (req, res) => {
       console.log(foundRestaurant, '<--- foundRestaurant on show route');
       let dish = {};
   
-      for( let i = 0; i < foundRestaurant.dishes.length; i++) {
-        if(foundRestaurant.dishes[i]._id.toString() === req.params.id.toString()) {
-          dish = foundRestaurant.dishes[i];
-          console.log(dish, " < the dish")
-        }
-      }
+      // for( let i = 0; i < foundRestaurant.dishes.length; i++) {
+      //   if(foundRestaurant.dishes[i]._id.toString() === req.params.id.toString()) {
+      //     dish = foundRestaurant.dishes[i];
+      //     console.log(dish, " < the dish")
+      //   }
+      // }
   
       res.render('dishes/show.ejs', {
         session: req.session,
         restaurant: foundRestaurant,
-        dish: dish,
-        foundDish: foundDish
+        // dish: dish,
+        dish: foundDish
       })
   
     } catch(err) {
@@ -67,16 +67,17 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) =>{
     try {
       const createdDish = await Dish.create(req.body);
-      
+      console.log(createdDish, '<-- createdDish on dishes post route')
       
       const foundRestaurant = await Restaurant.findById(req.body.restaurant);
       foundRestaurant.dishes.push(createdDish);
       await foundRestaurant.save();
+      console.log(foundRestaurant, '<-- foundRestaurant on dishes post route')
 
       const foundUser = await User.findById(req.session.userId);
       createdDish.postedBy = foundUser._id;
       await createdDish.save();
-
+        ////////////////////////
       console.log(createdDish, '<--- createdDish');
 
       res.redirect('/dishes');
