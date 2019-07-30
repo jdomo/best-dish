@@ -26,8 +26,7 @@ app.use('/auth', usersController)
 
 app.get('/', (req, res) => {
   res.render('index.ejs', {
-    username: req.session.username,
-    message: req.session.message
+    session: req.session
   })
 });
 

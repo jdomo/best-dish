@@ -39,8 +39,8 @@ router.get('/:id', async (req, res) => {
     try {
   
       const foundRestaurant = await Restaurant.findOne({'dishes': req.params.id}).populate('dishes')
-      const foundDish = await Dish.findOne({'_id': req.params.id}).populate('postedBy')
-  
+      const foundDish = await Dish.findOne({'_id': req.params.id}).populate('postedBy');
+      console.log(foundRestaurant, '<--- foundRestaurant on show route');
       let dish = {};
   
       for( let i = 0; i < foundRestaurant.dishes.length; i++) {
@@ -57,8 +57,7 @@ router.get('/:id', async (req, res) => {
       })
   
     } catch(err) {
-        console.log(err)
-      res.send(err);
+      console.log(err);
     }
   });
 
@@ -82,7 +81,6 @@ router.post('/', async (req, res) =>{
   
     } catch (err) {
       console.log(err)
-      res.send(err)
     }
   });
 
