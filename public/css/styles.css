@@ -5,9 +5,7 @@ body {
 }
 
 header {
-  border-bottom: 1px solid black;
   height: 3rem;
-  background: #8080804b;
   /* position: fixed; */
 }
 
