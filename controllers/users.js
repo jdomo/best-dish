@@ -18,7 +18,6 @@ router.get('/logout', (req, res) => {
 router.post('/login', async (req, res) => {
   try {
     const foundUser = await User.findOne({username: req.body.username});
-    console.log(foundUser, '<--- foundUser on login route');
 
     if (foundUser) {
 
@@ -49,13 +48,11 @@ router.post('/register', async (req, res) => {
 
   //encrypt
   const hashedPass = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
-  console.log(hashedPass, '<--- hashed password after hashSync');
 
   req.body.password = hashedPass;
 
   try {
     const newUser = await User.create(req.body);
-    console.log(newUser, '<--- new user from users post route to register');
 
     req.session.userId = newUser._id;
     req.session.username = newUser.username;
