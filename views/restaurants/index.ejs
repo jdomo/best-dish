@@ -1,6 +1,10 @@
 <%- include('../partials/header.ejs') %>
   <main> 
-    <a href="/restaurants/new">Create A New Restaurant</a>
+    <% if (session.logged) {%>
+      <a href="/dishes/new">Add a restaurant</a>
+      <% } else { %>
+      <a href="/">Log in to add a restaurant!</a>
+      <% } %> 
     <h1>All Restaurants</h1>
     <ul class="restaurants">
     <% for (let i = 0; i < restaurants.length; i += 1) { %>
