@@ -28,7 +28,7 @@ router.get('/new', (req, res) => {
   });
 
 // edit
-router.get('/:id/edit', async (req, res, next) => {
+router.get('/:id/edit', async (req, res) => {
     try  {
   
      const foundRestaurant = await Restaurant.findById(req.params.id);
@@ -108,22 +108,5 @@ router.delete('/:id', async (req, res) => {
     res.send(err)
   }
   });
-// router.delete('/:id', async (req, res) => {
-//   try {
-//     const deletedRestaurant = await Restaurant.findByIdAndRemove(req.params.id);
-//     console.log(deletedRestaurant);
-
-//     const foundRestaurant = await Restaurant.findOne({'dishes': req.params.id});
-//     console.log(foundRestaurant, "<---found restaurant");
-//     foundRestaurant.dishes.remove(req.params.id);
-//     res.redirect('/restaurants')
-
-
-//   } catch(err) {
-//     console.log(err)
-//     res.send(err)
-//   }
-
-//   })
   
 module.exports = router;

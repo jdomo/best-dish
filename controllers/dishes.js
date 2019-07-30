@@ -123,8 +123,7 @@ router.delete('/:id', async (req, res) => {
     } catch(err) {
       res.send(err)
     }
-
-    })
+  });
 
 // put
 router.put('/:id', async (req, res) => {
