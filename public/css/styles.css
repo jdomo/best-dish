@@ -1,7 +1,6 @@
 body {
   background: rgba(237, 182, 2, 0.631);
   text-align: center;
-  letter-spacing: 2px;
 }
 
 input {
@@ -14,6 +13,7 @@ input {
 
 #title {
   font-family: "Russo One", sans-serif;  
+  letter-spacing: 2px;
   text-transform: uppercase;
   font-size: 5rem;
   margin-bottom: 30px;
