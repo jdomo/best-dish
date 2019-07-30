@@ -1,26 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title><%= user.username %></title>
-  </head>
-  <body>
-    <header>
-      <h1><%= user.username %></h1>
-      <nav>
-        <ul>
-          <li>
-            <a href="/">Home</a>
-          </li>
-          <li>
-            <a href="/restaurants">Restaurants</a>
-          </li>
-          <li>
-            <a href="/users">Users</a>
-          </li>
-        </ul>
-      </nav>
-    </header>    
+<%- include('../partials/header.ejs') %>  
     <main>
       <h3><%= user.username %>'s Favorite Dishes</h3>
       <ul>

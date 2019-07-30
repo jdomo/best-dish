@@ -27,7 +27,8 @@ router.get('/new', (req, res)=>{
         console.log(allRestaurants, "< -- new route in dishes ")
         console.log('restaurants array ^^^^^^^^^^^^^');
         res.render('dishes/new.ejs', {
-          restaurants: allRestaurants
+          restaurants: allRestaurants,
+          session: req.session
         });
       }
     })
@@ -51,6 +52,7 @@ router.get('/:id', async (req, res) => {
       }
   
       res.render('dishes/show.ejs', {
+        session: req.session,
         restaurant: foundRestaurant,
         dish: dish,
         foundDish: foundDish
@@ -97,7 +99,8 @@ router.get('/:id/edit', async (req, res) => {
      res.render('dishes/edit.ejs', {
        dish: foundDishRestaurant.dishes[0],
        restaurants: allRestaurants,
-       dishRestaurant: foundDishRestaurant
+       dishRestaurant: foundDishRestaurant,
+       session: req.session
    });
   
    } catch (err){

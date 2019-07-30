@@ -12,6 +12,7 @@ router.get('/', async (req, res)=>{
       
       res.render('restaurants/index.ejs', {
         restaurants: foundRestaurants,
+        session: req.session
       })
     } catch (err) {
       res.send(err);
@@ -32,6 +33,7 @@ router.get('/:id/edit', async (req, res, next) => {
   
      res.render('restaurants/edit.ejs', {
        restaurant: foundRestaurant,
+       session: req.session
      });
   
    } catch (err){
@@ -61,6 +63,7 @@ router.get('/:id', async (req, res) => {
   
      res.render('restaurants/show.ejs', {
        restaurant: foundRestaurant,
+       session: req.session
      });
   
    } catch (err){

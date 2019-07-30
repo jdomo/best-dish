@@ -1,26 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Dishes Index</title>
-  </head>
-  <body>
-    <header>
-      <h1>Dishes</h1>
-      <nav>
-        <ul>
-          <li>
-            <a href="/">Home</a>
-          </li>
-          <li>
-            <a href="/restaurants">Restaurants</a>
-          </li>
-          <li>
-            <a href="/users">Users</a>
-          </li>
-        </ul>
-      </nav>
-    </header>    
+<%- include('../partials/header.ejs') %>   
     <main>
       <h2>New Dish</h2>
       <form action="/dishes" method="POST">

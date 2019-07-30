@@ -1,26 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title><%= dish.dishName %></title>
-  </head>
-  <body>
-    <header>
-      <h1><%= dish.dishName %></h1>
-      <nav>
-        <ul>
-          <li>
-            <a href="/">Home</a>
-          </li>
-          <li>
-            <a href="/restaurants">Restaurants</a>
-          </li>
-          <li>
-            <a href="/users">Users</a>
-          </li>
-        </ul>
-      </nav>
-    </header>
+<%- include('../partials/header.ejs') %>
     <main>
       <h3>All about <%= dish.dishName %></h3>
       <ul>

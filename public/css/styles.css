@@ -1,5 +1,5 @@
 body {
-  background: rgba(237, 182, 2, 0.631);
+  background: #edb602a1;
   text-align: center;
 }
 
@@ -9,6 +9,13 @@ input {
   line-height: 20px;
   margin: 3px;
   text-align: center; 
+}
+ul {
+  padding: 0;
+}
+
+li {
+  list-style: none;
 }
 
 #title {
