@@ -1,26 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Edit Restaurant</title>
-  </head>
-  <body>
-    <header>
-      <h1><%= restaurant.name %></h1>
-      <nav>
-        <ul>
-          <li>
-            <a href="/">Home</a>
-          </li>
-          <li>
-            <a href="/dishes">Dishes</a>
-          </li>
-          <li>
-            <a href="/users">Users</a>
-          </li>
-        </ul>
-      </nav>
-    </header>    
+<%- include('../partials/header.ejs') %>   
     <main>
       <h2>Edit Restaurant</h2>
       <form action="/restaurants/<%=restaurant._id%>?_method=PUT" method="post">

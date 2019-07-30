@@ -1,30 +1,10 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Dishes Index</title>
-  </head>
-  <body>
-    <header>
-      <h1>Dishes</h1>
-      <nav>
-        <ul>
-          <li>
-            <a href="/">Home</a>
-          </li>
-          <li>
-            <a href="/restaurants">Restaurants</a>
-          </li>
-          <li>
-            <a href="/users">Users</a>
-          </li>
-          <li>
-          <a href="/dishes/new">Create A New Dish</a>
-          </li>
-        </ul>
-      </nav>
-    </header>    
+<%- include('../partials/header.ejs') %>   
     <main>
+      <% if (session.logged) {%>
+      <a href="/dishes/new">Create A New Dish</a>
+      <% } else { %>
+      <a href="/">Log in to add your dish!</a>
+      <% } %> 
       <h2>List of Dishes</h2>
       <ul>
         <% for(let i = 0; i < dishes.length; i++){ %>

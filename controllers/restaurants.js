@@ -12,6 +12,7 @@ router.get('/', async (req, res)=>{
       
       res.render('restaurants/index.ejs', {
         restaurants: foundRestaurants,
+        session: req.session
       })
     } catch (err) {
       res.send(err);
@@ -21,7 +22,9 @@ router.get('/', async (req, res)=>{
 //new
 router.get('/new', (req, res) => {
     Restaurant.create();
-    res.render('restaurants/new.ejs')
+    res.render('restaurants/new.ejs', {
+      session: req.session
+    })
   });
 
 // edit
@@ -32,6 +35,7 @@ router.get('/:id/edit', async (req, res) => {
   
      res.render('restaurants/edit.ejs', {
        restaurant: foundRestaurant,
+       session: req.session
      });
   
    } catch (err){
@@ -44,7 +48,7 @@ router.put('/:id', async (req, res) => {
     try  {
    
     const updatedRestaurant = await Restaurant.findByIdAndUpdate(req.params.id, req.body, {new: true});
-    console.log(updatedRestaurant);
+    // console.log(updatedRestaurant);
   
     res.redirect('/restaurants');
   
@@ -61,6 +65,7 @@ router.get('/:id', async (req, res) => {
   
      res.render('restaurants/show.ejs', {
        restaurant: foundRestaurant,
+       session: req.session
      });
   
    } catch (err){

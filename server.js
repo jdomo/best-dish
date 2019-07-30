@@ -20,14 +20,14 @@ app.use(bodyParser.urlencoded({extended:false}));
 
 app.use(methodOverride('_method'));
 
+app.use(express.static('public'));
 app.use('/dishes', dishesController);
 app.use('/restaurants', restaurantsController);
 app.use('/auth', usersController)
 
 app.get('/', (req, res) => {
   res.render('index.ejs', {
-    username: req.session.username,
-    message: req.session.message
+    session: req.session
   })
 });
 
