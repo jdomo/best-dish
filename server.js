@@ -20,6 +20,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 
 app.use(methodOverride('_method'));
 
+app.use(express.static('public'));
 app.use('/dishes', dishesController);
 app.use('/restaurants', restaurantsController);
 app.use('/auth', usersController)

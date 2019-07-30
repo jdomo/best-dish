@@ -1,0 +1,16 @@
+body {
+  background: rgba(237, 182, 2, 0.631);
+  font-family: "Russo One", sans-serif;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+input {
+  border-radius: 7px;
+  margin: 3px;
+}
+
+#title {
+  text-transform: uppercase;
+  font-size: 5rem;
+}

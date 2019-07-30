@@ -6,14 +6,15 @@ const dishSchema = new mongoose.Schema({
   dishDescribe: String,
   dishImg: {type: String, required: true},
   cost: Number,
-  postedBy: [{
+  postedBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
-  }],
-  restaurant: [{
+  },
+  restaurant: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Restaurant',
-  }]
+    required: true
+  }
 });
 
 const Dish = mongoose.model('Dish', dishSchema);
