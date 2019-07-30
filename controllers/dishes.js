@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const Dish = require('../models/Dish');
-const Restaurant = require('../models/Restaurant')
-const User = require('../models/User')
+const Restaurant = require('../models/Restaurant');
+const User = require('../models/User');
 
 // index
 router.get('/', async (req, res) => {
@@ -74,7 +74,7 @@ router.post('/', async (req, res) =>{
       await foundRestaurant.save();
 
       const foundUser = await User.findById(req.session.userId);
-      createdDish.postedBy.push(foundUser._id);
+      createdDish.postedBy = foundUser._id;
       await createdDish.save();
 
       console.log(createdDish, '<--- createdDish');

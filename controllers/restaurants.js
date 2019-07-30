@@ -22,7 +22,9 @@ router.get('/', async (req, res)=>{
 //new
 router.get('/new', (req, res) => {
     Restaurant.create();
-    res.render('restaurants/new.ejs')
+    res.render('restaurants/new.ejs', {
+      session: req.session
+    })
   });
 
 // edit

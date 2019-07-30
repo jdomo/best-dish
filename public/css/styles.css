@@ -1,21 +1,48 @@
 body {
   background: #edb602a1;
   text-align: center;
+  margin: 0;
+}
+
+header {
+  border-bottom: 1px solid black;
+  height: 3rem;
+  background: #8080804b;
+  /* position: fixed; */
 }
 
 input {
   border-radius: 7px;
-  border: 1px solid;
+  border: 1px solid rgba(49, 49, 49, 0.541);
   line-height: 20px;
   margin: 3px;
-  text-align: center; 
+  text-align: center;
 }
+
 ul {
   padding: 0;
 }
 
 li {
   list-style: none;
+}
+
+nav {
+  padding-top: 15px;
+}
+
+nav a {
+  text-decoration: none;
+  padding: 20px;
+  color: #000000;
+}
+
+nav a:hover {
+  color: #ED4c4c;
+}
+
+.logged-in {
+  float: right;
 }
 
 #title {
