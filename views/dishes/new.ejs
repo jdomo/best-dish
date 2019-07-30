@@ -5,11 +5,15 @@
         <label>Name of dish:</label></br>
         <input type="text" name="dishName" placeholder="Dish name"></br>
         <label>Restaurant:</label></br>
+        <% if (restaurants.length) {%>
           <select name="restaurant">
-            <% for (let i = 0; i < restaurants.length; i += 1) {%>
-              <option value="<%=restaurants[i]._id%>"><%=restaurants[i].name%></option>
-            <% } %>
+              <% for (let i = 0; i < restaurants.length; i += 1) {%>
+                <option value="<%=restaurants[i]._id%>"><%=restaurants[i].name%></option>
+              <% } %>
           </select></br>
+        <% } else { %>
+          <a href="/restaurants/new">Add a restaurant</a>
+        <% } %></br>
         <label>Category:</label></br>
         <input type="text" name="dishCategory" placeholder="Category (e.g. Korean, Vietnamese)"></br>
         <label>Description:</label></br>
