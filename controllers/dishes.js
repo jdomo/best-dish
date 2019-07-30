@@ -4,19 +4,17 @@ const Dish = require('../models/Dish');
 const Restaurant = require('../models/Restaurant')
 
 // index
-router.get('/', async (req, res)=>{
-    console.log(req.session, 'req.session in index or dish')
-    try {
-      
-      const foundDishes = await Dish.find();
-      
-      res.render('dishes/index.ejs', {
-        dishes: foundDishes,
-      })
-    } catch (err) {
-      res.send(err);
-    }
-  });
+router.get('/', async (req, res) => {
+  try {    
+    const foundDishes = await Dish.find();   
+    res.render('dishes/index.ejs', {
+      dishes: foundDishes,
+      session: req.session
+    })
+  } catch (err) {
+    res.send(err);
+  }
+});
 
 //new
 router.get('/new', (req, res)=>{

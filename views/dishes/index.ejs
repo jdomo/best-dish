@@ -15,12 +15,15 @@
           <li>
             <a href="/restaurants">Restaurants</a>
           </li>
-          <li>
-            <a href="/users">Users</a>
-          </li>
+          <% if (session.logged) {%>
           <li>
           <a href="/dishes/new">Create A New Dish</a>
           </li>
+          <% } else { %>
+          <li>
+          <a href="/">Log in to add your dish!</a>
+          </li>
+          <% } %> 
         </ul>
       </nav>
     </header>    
