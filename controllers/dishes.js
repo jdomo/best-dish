@@ -118,12 +118,10 @@ router.delete('/:id', async (req, res) => {
       foundRestaurant.dishes.remove(req.params.id);
       res.redirect('/dishes')
 
-
     } catch(err) {
       res.send(err)
     }
-
-    })
+  });
 
 // put
 router.put('/:id', async (req, res) => {
