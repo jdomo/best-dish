@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 
 const dishSchema = new mongoose.Schema({
   dishName: String,
-  dishCategory: String,
   dishDescribe: String,
   dishImg: {type: String, required: true},
   cost: Number,
