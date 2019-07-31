@@ -1,4 +1,32 @@
-<%- include('../partials/basicheader.ejs', {pageTitle: 'Dishes'}) %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Home</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Fredoka+One|Rubik&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css" type="text/css">
+</head>
+<body>
+<video width="1200" height="900" autoplay loop muted>
+  <source src="final_5d41da1125696f0013cb5a7e_307504.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+  <header>
+    <nav>
+      <div class="logged-in">
+      <% if (session.username) { %>
+        <span>Hello, <%=session.username%>!</span>
+        <a href="/auth/logout">Log out</a>
+      <% } %>
+      <% if (session.message && !session.logged) { %>
+        <span><%= session.message %></span>
+      <% } %>
+    <main class="index-container">
+      <div class="index-header">
+        <h2>Dishes</h2>
       </div>
       <div class="create-login">
         <% if (session.logged) {%>
