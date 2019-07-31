@@ -22,6 +22,10 @@ main {
   margin: auto;
 }
 
+h3 {
+  font-size: 1.25rem;
+}
+
 label {
   margin-bottom: 20px;
 }
@@ -33,6 +37,7 @@ input {
   padding: 0 6px 0 6px;
   margin: 10px 3px 10px 3px;
   text-align: center;
+  font-size: 12px;
 }
 
 textarea {
@@ -189,4 +194,13 @@ img {
 
 #restaurants-index-container {
   margin-top: 2rem;
+}
+
+#index-login {
+  margin-bottom: 30px;
+}
+
+#index-login input, #index-register input {
+  margin: 3px;
+  /* padding: 0; */
 }

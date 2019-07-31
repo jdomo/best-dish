@@ -1,21 +1,28 @@
 <%- include('./partials/header.ejs') %>
+    <a href="/dishes">Dishes</a>
+    <a href="/restaurants">Restaurants</a>
+  </nav>
+  </header>
   <main>
     <div id ="title-div">
       <h1 id="title">Best Dish</h1>
     </div>
-    <form action="/auth/login" method="POST">
-      <h3>Login</h3>
-      <input type="text" name="username" placeholder="username"></br>
-      <input type="text" name="password" placeholder="password"></br>
-      <input type="submit" value="Log In">
-    </form>
-    
-    <form action="/auth/register" method="POST">
-      <h3>Register</h3>
-      <input type="text" name="username" placeholder="username"></br>
-      <input type="password" name="password" placeholder="password"></br>
-      <input type="submit" value="Make Account">
-    </form>
+    <div id="index-login">
+      <form action="/auth/login" method="POST">
+        <h3>Login</h3>
+        <input type="text" name="username" placeholder="username"></br>
+        <input type="text" name="password" placeholder="password"></br>
+        <input type="submit" value="Log In">
+      </form>
+    </div>
+    <div id="index-register">
+      <form action="/auth/register" method="POST">
+        <h3>Register</h3>
+        <input type="text" name="username" placeholder="username"></br>
+        <input type="password" name="password" placeholder="password"></br>
+        <input type="submit" value="Make Account">
+      </form>
+    </div>
   </main>
 </body>
 </html>
