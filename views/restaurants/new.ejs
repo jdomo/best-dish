@@ -1,22 +1,6 @@
-<%- include('../partials/basicheader.ejs') %>
-  <body>
-    <header>
-      <h1>Restaurants</h1>
-      <nav>
-        <ul>
-          <li>
-            <a href="/">Home</a>
-          </li>
-          <li>
-            <a href="/restaurants">Restaurants</a>
-          </li>
-          <li>
-            <a href="/users">Users</a>
-          </li>
-        </ul>
-      </nav>
-    </header>    
+<%- include('../partials/basicheader.ejs') %>   
     <main>
+      <h1>Add a restaurant</h1>
       <form action="/restaurants" method="POST">
         <label>Name of restaurant:</label></br>
         <input type="text" name="name"></br>

@@ -13,8 +13,8 @@
     <nav>
       <div class="logged-in">
       <% if (session.username) { %>
-        <span>Hello, <%=session.username%>!</span>
-        <a href="/auth/logout">Log out</a>
+        <span>Hungry, <%=session.username%>?</span>
+        <a href="/auth/logout" id="logout">Log out</a>
       <% } %>
       <% if (session.message && !session.logged) { %>
         <span><%= session.message %></span>

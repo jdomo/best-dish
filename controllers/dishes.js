@@ -7,7 +7,8 @@ const User = require('../models/User');
 // index
 router.get('/', async (req, res) => {
   try {    
-    const foundDishes = await Dish.find();   
+    const foundDishes = await Dish.find().populate('postedBy').populate('restaurant'); 
+    console.log(foundDishes, '<-- foundDishes in dishes index get route')  
     res.render('dishes/index.ejs', {
       dishes: foundDishes,
       session: req.session
@@ -42,7 +43,7 @@ router.get('/:id', async (req, res) => {
       const foundRestaurant = await Restaurant.findOne({'dishes': req.params.id}).populate('dishes')
       const foundDish = await Dish.findOne({'_id': req.params.id}).populate('postedBy');
       console.log(foundRestaurant, '<--- foundRestaurant on show route');
-      let dish = {};
+      // let dish = {};
   
       // for( let i = 0; i < foundRestaurant.dishes.length; i++) {
       //   if(foundRestaurant.dishes[i]._id.toString() === req.params.id.toString()) {
