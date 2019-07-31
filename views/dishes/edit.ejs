@@ -1,28 +1,26 @@
-<%- include('../partials/header.ejs') %>     
-    <main>
-      <h2>Edit Dish</h2>
-         <form action="/dishes/<%=dish._id%>?_method=PUT" method="post">
-    <select name="restaurantId">
-        <% for(let i = 0; i < restaurants.length; i++) { %>
-            <option
-                value="<%=restaurants[i]._id%>"
-                <% if(restaurants[i]._id.toString() === dishRestaurant._id.toString()){ %>
-                    selected
-                <% } %>
-                >
-                <%=restaurants[i].name%>
-            </option>
-        <% } %>
-    </select><br/>
-        <label>Name of dish:</label></br>
+<%- include('../partials/basicheader.ejs', {pageTitle: 'Edit Dish'}) %>     
+
+    <form action="/dishes/<%=dish._id%>?_method=PUT" method="post">
+        <label>Restaurant</label></br>
+        <select name="restaurantId">
+            <% for(let i = 0; i < restaurants.length; i++) { %>
+                <option
+                    value="<%=restaurants[i]._id%>"
+                    <% if(restaurants[i]._id.toString() === dishRestaurant._id.toString()){ %>
+                        selected
+                    <% } %>
+                    >
+                    <%=restaurants[i].name%>
+                </option>
+            <% } %>
+        </select><br/>
+        <label>Name of dish</label></br>
         <input type="text" name="dishName" value="<%= dish.dishName %>"></br>
-        <label>Category:</label></br>
-        <input type="text" name="dishCategory" value="<%= dish.dishCategory %>"></br>
-        <label>Description:</label></br>
+        <label>Description</label></br>
         <input type="text" name="dishDescribe" value="<%= dish.dishDescribe %>"></br>
-        <label>Image:</label></br>
+        <label>Image</label></br>
         <input type="text" name="dishImg" value="<%= dish.dishImg %>"></br>
-        <label>Cost:</label></br>
+        <label>Cost</label></br>
         <input type="text" name="cost" value="<%= dish.cost %>"></br>
         <input type="submit" value="Submit">
       </form>

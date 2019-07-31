@@ -1,6 +1,4 @@
-<%- include('../partials/header.ejs') %>   
-    <main>
-      <h2>Edit Restaurant</h2>
+<%- include('../partials/basicheader.ejs', {pageTitle: `Edit ${restaurant.name}`}) %>    
       <form action="/restaurants/<%=restaurant._id%>?_method=PUT" method="post">
         <label>Restaurant name:</label></br>
         <input type="text" name="name" value="<%= restaurant.name %>"></br>

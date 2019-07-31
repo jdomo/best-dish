@@ -1,19 +1,19 @@
-<%- include('../partials/basicheader.ejs') %>
-  <main> 
-    <% if (session.logged) {%>
-      <a href="/restaurants/new">Add a restaurant</a>
-      <% } else { %>
-      <a href="/">Log in to add a restaurant!</a>
-      <% } %> 
-    <h1>All Restaurants</h1>
-    <ul class="restaurants">
-    <% for (let i = 0; i < restaurants.length; i += 1) { %>
-      <li>
-        <a href="/restaurants/<%=restaurants[i]._id%>"><%= restaurants[i].name %></a></br>
-        <%= restaurants[i].location %>
-      </li>
-    <% } %>
-    </ul>
+<%- include('../partials/basicheader.ejs', {pageTitle: 'Restaurants'}) %>
+  
+    <div id="restaurants-index-container">
+      <% if (session.logged) {%>
+        <a href="/restaurants/new">Add a restaurant</a>
+        <% } else { %>
+        <a href="/">Log in to add a restaurant!</a>
+        <% } %> 
+      <ul class="restaurants">
+      <% for (let i = 0; i < restaurants.length; i += 1) { %>
+        <li>
+          <a href="/restaurants/<%=restaurants[i]._id%>"><%= restaurants[i].name %></a></br>
+        </li>
+      <% } %>
+      </ul>
+    </div>
   </main>
 </body>
 </html>

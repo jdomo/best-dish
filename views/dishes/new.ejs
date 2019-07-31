@@ -1,10 +1,8 @@
-<%- include('../partials/basicheader.ejs') %>   
-    <main>
-      <h2>New Dish</h2>
+<%- include('../partials/basicheader.ejs', {pageTitle: 'New Dish'}) %>
       <form action="/dishes" method="POST">
-        <label>Name of dish:</label></br>
+        <label>Name of dish</label></br>
         <input type="text" name="dishName" placeholder="Dish name"></br>
-        <label>Restaurant:</label></br>
+        <label>Restaurant</label></br>
         <% if (restaurants.length) {%>
           <select name="restaurant">
               <% for (let i = 0; i < restaurants.length; i += 1) {%>
@@ -14,14 +12,12 @@
         <% } else { %>
           <a href="/restaurants/new">Add a restaurant</a>
         <% } %></br>
-        <label>Category:</label></br>
-        <input type="text" name="dishCategory" placeholder="Category (e.g. Korean, Vietnamese)"></br>
-        <label>Description:</label></br>
-        <input type="text" name="dishDescribe" placeholder="Why do you love this dish?"></br>
-        <label>Image:</label></br>
+        <label>Image link</label></br>
         <input type="text" name="dishImg" placeholder="Paste URL here"></br>
-        <label>Cost:</label></br>
+        <label>Cost</label></br>
         <input type="text" name="cost" placeholder="How much does it cost?"></br>
+        <label>Description</label></br>
+        <textarea name="dishDescribe" placeholder="Why do you love this dish?"></textarea></br>
         <input type="submit" value="Submit">
       </form>
     </main>
