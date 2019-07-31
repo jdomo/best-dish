@@ -11,6 +11,11 @@ header {
   width: 90%;
 }
 
+video {
+  width: 100%;
+  height: 600px;
+}
+
 main {
   width: 90%;
   margin: auto;
@@ -72,6 +77,7 @@ img {
 }
 
 .dish-card {
+  text-align: center;
   border: 4px double rgba(0, 0, 0, 0.418);
   width: 30%;
   margin: 1rem auto;
@@ -100,6 +106,7 @@ img {
 .dish-index-img {
   padding-top: 1rem;
   padding-bottom: 1rem;
+  max-height: 200px;
   height: 80%;
   width: 80%;
   border-radius: 80px 80px 80px 80px;
