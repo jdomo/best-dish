@@ -1,11 +1,11 @@
-<%- include('../partials/basicheader.ejs') %>
-    <main>
-      <h3><%= dish.dishName %></h3>
+<%- include('../partials/basicheader.ejs', {pageTitle: dish.dishName}) %>
       <ul>
-        <li>Description: <%=dish.dishDescribe%></li></br>
         <li>Find it at <%=restaurant.name%>, $<%=dish.cost%></li></br>
+        <li>
+          <div id="describe-dish"><%=dish.dishDescribe%></div>
+        </li></br>
         <li>Posted by: <%=dish.postedBy.username%></li></br>
-        <img src="<%= dish.dishImg %>">
+        <img class="show-dish-img" src="<%= dish.dishImg %>">
       </ul>
       <% if (dish.postedBy.username === session.username) { %>
         <section>

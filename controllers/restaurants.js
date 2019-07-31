@@ -61,7 +61,7 @@ router.put('/:id', async (req, res) => {
 router.get('/:id', async (req, res) => {
     try  {
   
-     const foundRestaurant = await Restaurant.findById(req.params.id).populate('dishes');
+     const foundRestaurant = await Restaurant.findById(req.params.id).populate('dishes').populate('postedBy');
   
      res.render('restaurants/show.ejs', {
        restaurant: foundRestaurant,
@@ -77,11 +77,13 @@ router.get('/:id', async (req, res) => {
 // post
 router.post('/', async (req, res) => {
     try  {
-  
      const createdRestaurant = await Restaurant.create(req.body);
      console.log(createdRestaurant)
+     const foundUser = await User.findById(req.session.userId);
+     createdRestaurant.postedBy = foundUser._id;
+     await createdRestaurant.save();
      res.redirect('/restaurants');
-  
+     
    } catch (err){
      res.send(err);
   

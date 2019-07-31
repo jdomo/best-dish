@@ -1,7 +1,4 @@
-<%- include('../partials/basicheader.ejs') %>
-    <main class="index-container">
-      <div class="index-header">
-        <h2>Dishes</h2>
+<%- include('../partials/basicheader.ejs', {pageTitle: 'Dishes'}) %>
       </div>
       <div class="create-login">
         <% if (session.logged) {%>
