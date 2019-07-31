@@ -7,7 +7,8 @@ const User = require('../models/User');
 // index
 router.get('/', async (req, res) => {
   try {    
-    const foundDishes = await Dish.find();   
+    const foundDishes = await Dish.find().populate('postedBy').populate('restaurant'); 
+    console.log(foundDishes, '<-- foundDishes in dishes index get route')  
     res.render('dishes/index.ejs', {
       dishes: foundDishes,
       session: req.session

@@ -1,5 +1,5 @@
 body {
-  background: #edb602a1;
+  background: #ffc342b7;
   font-family: 'Rubik', sans-serif;
   text-align: center;
   margin: 0;
@@ -7,12 +7,18 @@ body {
 
 header {
   height: 3rem;
-  /* position: fixed; */
+  margin: auto;
+  width: 90%;
+}
+
+main {
+  width: 90%;
+  margin: auto;
 }
 
 input {
   border-radius: 7px;
-  border: 1px solid rgba(49, 49, 49, 0.541);
+  border: 1px solid #3131318a;
   line-height: 20px;
   margin: 3px;
   text-align: center;
@@ -26,18 +32,86 @@ li {
   list-style: none;
 }
 
+a {
+  text-decoration: none;
+  padding: 20px 0px;
+  color: #000000;
+}
+
+a:hover {
+  color: #ED4c4c;
+}
+
 nav {
   padding-top: 15px;
 }
 
 nav a {
-  text-decoration: none;
-  padding: 20px;
-  color: #000000;
+  padding: 20px 20px 20px 0px;
 }
 
-nav a:hover {
-  color: #ED4c4c;
+#logout {
+  padding-right: 0;
+}
+
+.dish-card {
+  border: 4px double rgba(0, 0, 0, 0.418);
+  width: 30%;
+  margin: 1rem auto;
+  padding: 2rem;
+  background: rgba(245, 245, 245, 0.048)
+}
+
+.dish-index-link {
+  margin-top: 3rem;
+  font-size: 1.75rem;
+  text-transform: capitalize;
+  font-weight: 700;
+}
+
+#dish-resto-name {
+  font-size: 1rem;
+}
+
+.dish-index-info {
+  font-size: .75rem;
+  text-transform: uppercase;
+  margin-top: 1rem;
+  margin-bottom: .25rem;
+}
+
+.dish-index-img {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  height: 80%;
+  width: 80%;
+  border-radius: 80px 80px 80px 80px;
+}
+
+.index-container {
+  margin: auto;
+  width: 90%;
+}
+
+.create-login {
+  text-align: left;
+  margin: 0;
+}
+
+.create-login a {
+  padding: 0;
+}
+
+.index-header {
+  margin: auto;
+}
+
+.index-header h2 {
+  font-size: 3rem;
+  text-transform: uppercase;
+  margin-bottom: 0.25em;
+  padding-bottom: 0.5em;
+  border-bottom: 3px solid black;
 }
 
 .logged-in {
@@ -60,13 +134,12 @@ nav a:hover {
   padding: 2rem;
 }
 
-
 img {
   width: 100%;
   height: 750px;
 }
 
 #title-div {
-  width: 40%;
+  width: 50%;
   margin: auto;
 }
