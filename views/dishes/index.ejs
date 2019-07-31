@@ -10,12 +10,11 @@
   <link rel="stylesheet" href="/css/styles.css" type="text/css">
 </head>
 <body>
-<video autoplay loop muted>
-  <source src="final_5d41da1125696f0013cb5a7e_307504.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+  <video autoplay loop muted>
+    <source src="final_5d41da1125696f0013cb5a7e_307504.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
   <header>
-    <main class="index-container">
     <nav>
       <div class="logged-in">
       <% if (session.username) { %>
@@ -26,29 +25,38 @@
         <span><%= session.message %></span>
       <% } %>
       </div>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/restaurants">Restaurants</a>
+        <a href="/dishes">Dishes</a>
+      </div>
     </nav>
-      <div class="index-header">
+  </header>
+  <main class="index-container">
+    <div class="index-header">
+    <h2>Dishes</h2>
 
-      <div class="create-login">
-        <% if (session.logged) {%>
-        <a href="/dishes/new">Create A New Dish</a>
-        <% } else { %>
-        <a href="/">Log in to add your dish!</a>
-        <% } %> 
-      </div>
-      <div id="dish-card-container">
-        <ul>
-          <% for(let i = 0; i < dishes.length; i++){ %>
-            <div class="dish-card">
-              <li>
-                <a class="dish-index-link" href="/dishes/<%=dishes[i]._id%>"><%=dishes[i].dishName%></a></br>
-                <p class="dish-index-info" href="/dishes/<%=dishes[i]._id%>"><span id="dish-resto-name"><%=dishes[i].restaurant.name%></span></br></br>posted by <%=dishes[i].postedBy.username%></p>
-                <a href="/dishes/<%=dishes[i]._id%>"><img class="dish-index-img" src="<%=dishes[i].dishImg%>"></a>
-              </li>
-            </div>
-          <% } %>
-        </ul>
-      </div>
-    </main>
+    <div class="create-login">
+      <% if (session.logged) {%>
+      <a href="/dishes/new">Create A New Dish</a>
+      <% } else { %>
+      <a href="/">Log in to add your dish!</a>
+      <% } %> 
+    </div>
+    <div id="dish-card-container">
+      <ul>
+        <% for(let i = 0; i < dishes.length; i++){ %>
+          <div class="dish-card">
+            <li>
+              <a class="dish-index-link" href="/dishes/<%=dishes[i]._id%>"><%=dishes[i].dishName%></a></br>
+              <p class="dish-index-info" href="/dishes/<%=dishes[i]._id%>"><span id="dish-resto-name"><%=dishes[i].restaurant.name%></span></br></br>posted by <%=dishes[i].postedBy.username%></p>
+              <a href="/dishes/<%=dishes[i]._id%>"><img class="dish-index-img" src="<%=dishes[i].dishImg%>"></a>
+            </li>
+          </div>
+        <% } %>
+      </ul>
+    </div>
+
+  </main>
   </body>
 </html>
