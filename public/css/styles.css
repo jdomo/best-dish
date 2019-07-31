@@ -148,6 +148,10 @@ img {
   float: right;
 }
 
+.logged-in a {
+  padding-right: 0;
+}
+
 .nav-links {
   float: left;
 }
