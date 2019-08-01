@@ -33,6 +33,10 @@ app.get('/', (req, res) => {
   })
 });
 
-app.listen(PORT, () => {
-  console.log(`listening..... on port ${PORT}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`listening..... on port ${PORT}`);
+// });
+
+app.listen(3000, () => {
+  console.log('server up on 3000');
+})

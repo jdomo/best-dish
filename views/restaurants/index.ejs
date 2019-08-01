@@ -19,6 +19,8 @@
       <% if (session.username) { %>
         <span>Hello, <%=session.username%>!</span>
         <a href="/auth/logout">Log out</a>
+      <% } else { %>
+        <a href="/#link-land" id="logout">Log in</a>
       <% } %>
       <% if (session.message && !session.logged) { %>
         <span><%= session.message %></span>
@@ -37,10 +39,12 @@
       <% if (session.logged) {%>
       <a href="/restaurants/new">Add new restaurant</a>
       <% } else { %>
-      <a href="/">Log in to add a restaurant!</a>
+      <a href="/#link-land">Log in to add a restaurant!</a>
       <% } %> 
     </div>
+    <a id="link-land">
     <div id="restaurants-index-container">
+    </a>
       <ul class="restaurants">
       <% for (let i = 0; i < restaurants.length; i += 1) { %>
         <li>

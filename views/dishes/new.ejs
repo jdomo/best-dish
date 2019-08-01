@@ -2,16 +2,16 @@
       <form action="/dishes" method="POST">
         <label>Name of dish</label></br>
         <input type="text" name="dishName" placeholder="Dish name"></br>
-        <label>Restaurant</label></br>
         <% if (restaurants.length) {%>
+        <label>Restaurant</label></br>
           <select name="restaurant">
               <% for (let i = 0; i < restaurants.length; i += 1) {%>
                 <option value="<%=restaurants[i]._id%>"><%=restaurants[i].name%></option>
               <% } %>
           </select></br>
-          <a href="/restaurants/new">Add new</a></br>
+          <a href="/restaurants/new" class="small-link">Add new</a></br>
         <% } else { %>
-          <a href="/restaurants/new">Add a restaurant</a>
+          <a href="/restaurants/new">[Add a restaurant]</a></br>
         <% } %></br>
         <label>Image link</label></br>
         <input type="text" name="dishImg" placeholder="Paste URL here"></br>

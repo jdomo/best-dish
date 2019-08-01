@@ -1,9 +1,20 @@
 <%- include('../partials/basicheader.ejs', {pageTitle: restaurant.name}) %>   
-      <label>Dishes</label>
+      <h3>Dishes</h3>
       <ul>
-        <% for (let i = 0; i < restaurant.dishes.length; i++) {%>
-          <li><a href="/dishes/<%=restaurant.dishes[i]._id%>"><%=restaurant.dishes[i].dishName%></a></li>
-        <%}%>
+        <% if (!restaurant.dishes.length) { %>
+            <li>
+              No dishes for this restaurant yet! 
+              <% if (session.username) { %>
+                <a href="/dishes/new">Click to add one</a>
+              <% } else { %>
+                <a href="/#link-land">Log in to add one</a>
+              <% } %>
+            </li>
+        <% } else { %> 
+          <% for (let i = 0; i < restaurant.dishes.length; i++) { %>
+            <li><a href="/dishes/<%=restaurant.dishes[i]._id%>"><%=restaurant.dishes[i].dishName%></a></li>
+          <% } %>
+        <% } %>
       </ul>
       <ul>
         <li>Location: <%= restaurant.location %></li>

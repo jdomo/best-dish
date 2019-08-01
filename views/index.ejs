@@ -18,7 +18,7 @@
     <nav>
       <div class="logged-in">
         <% if (session.username) { %>
-          <span>Hello, <%=session.username%>!</span>
+          <span>Hungry, <%=session.username%>?</span>
           <a href="/auth/logout">Log out</a>
         <% } %>
         <% if (session.message && !session.logged) { %>
@@ -37,7 +37,9 @@
     </div>
     <div id="index-login">
       <form action="/auth/login" method="POST">
+      <a id="link-land">
         <h3>Login</h3>
+      </a>
         <input type="text" name="username" placeholder="username"></br>
         <input type="text" name="password" placeholder="password"></br>
         <input type="submit" value="Log In">

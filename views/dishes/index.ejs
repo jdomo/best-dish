@@ -20,6 +20,8 @@
       <% if (session.username) { %>
         <span>Hello, <%=session.username%>!</span>
         <a href="/auth/logout">Log out</a>
+      <% } else { %>
+        <a href="/#link-land" id="logout">Log in</a>
       <% } %>
       <% if (session.message && !session.logged) { %>
         <span><%= session.message %></span>
@@ -38,10 +40,13 @@
         <% if (session.logged) {%>
         <a href="/dishes/new">Create A New Dish</a>
         <% } else { %>
-        <a href="/">Log in to add your dish!</a>
+        <a href="/#link-land">Log in to add your dish!</a>
         <% } %> 
       </div>
+    </div>
+    <a id="link-land">
     <div id="dish-card-container">
+    </a>
       <ul>
         <% for(let i = 0; i < dishes.length; i++){ %>
           <div class="dish-card">

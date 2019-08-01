@@ -72,7 +72,7 @@ router.post('/', async (req, res) =>{
         ////////////////////////
       console.log(createdDish, '<--- createdDish');
 
-      res.redirect('/dishes');
+      res.redirect('/dishes#link-land');
   
     } catch (err) {
       console.log(err)
@@ -81,6 +81,7 @@ router.post('/', async (req, res) =>{
 
 // edit
 router.get('/:id/edit', async (req, res) => {
+    console.log(req.session, '<--- req.session on dish edit route');
     try  {
      console.log('<---- in edit route')
      const allRestaurants = await Restaurant.find({})
@@ -89,13 +90,16 @@ router.get('/:id/edit', async (req, res) => {
        .populate({path: 'dishes', match:{_id: req.params.id}});
   
        console.log(foundDishRestaurant.dishes[0], "<---foundDishRestaurant")
-     res.render('dishes/edit.ejs', {
-       dish: foundDishRestaurant.dishes[0],
-       restaurants: allRestaurants,
-       dishRestaurant: foundDishRestaurant,
-       session: req.session
-   });
-  
+    if (req.session.userId == foundDishRestaurant.postedBy) {
+      res.render('dishes/edit.ejs', {
+        dish: foundDishRestaurant.dishes[0],
+        restaurants: allRestaurants,
+        dishRestaurant: foundDishRestaurant,
+        session: req.session
+      });
+    } else {
+      res.send('You don\'t have permission to be here!');
+    }
    } catch (err){
     console.log(err)
     res.send(err);
@@ -105,14 +109,18 @@ router.get('/:id/edit', async (req, res) => {
 // delete
 router.delete('/:id', async (req, res) => {
     try {
-      const deletedDish = await Dish.findByIdAndRemove(req.params.id);
-      console.log(deletedDish);
+      const toDelete = await Dish.findById(req.params.id);
+      if (req.session.userId == toDelete.postedBy) {
+        const deletedDish = await Dish.findByIdAndRemove(req.params.id);
+        console.log(deletedDish);
 
-      const foundRestaurant = await Restaurant.findOne({'dishes': req.params.id});
-      console.log(foundRestaurant);
-      foundRestaurant.dishes.remove(req.params.id);
-      res.redirect('/dishes')
-
+        const foundRestaurant = await Restaurant.findOne({'dishes': req.params.id});
+        console.log(foundRestaurant);
+        foundRestaurant.dishes.remove(req.params.id);
+        res.redirect('/dishes#link-land')
+      } else {
+        res.send('You don\'t have permission to be here!');
+      }
     } catch(err) {
       res.send(err)
     }
@@ -125,7 +133,7 @@ router.put('/:id', async (req, res) => {
     const updatedDish = await Dish.findByIdAndUpdate(req.params.id, req.body, {new: true});
     console.log(updatedDish, "<---updated dish")
   
-    res.redirect('/dishes')
+    res.redirect('/dishes#link-land')
     
     } catch (err){
         res.send(err);

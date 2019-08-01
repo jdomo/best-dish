@@ -6,9 +6,7 @@ const User = require('../models/User');
 
 // index
 router.get('/', async (req, res)=>{
-    console.log(req.session, 'req.session in index or dish');
-    try {
-      
+    try {   
       const foundRestaurants = await Restaurant.find();
       res.render('restaurants/index.ejs', {
         restaurants: foundRestaurants,
@@ -30,27 +28,27 @@ router.get('/new', (req, res) => {
 // edit
 router.get('/:id/edit', async (req, res) => {
     try  {
-  
-     const foundRestaurant = await Restaurant.findById(req.params.id);
-  
-     res.render('restaurants/edit.ejs', {
-       restaurant: foundRestaurant,
-       session: req.session
-     });
-  
+      const foundRestaurant = await Restaurant.findById(req.params.id);
+      if (req.session.userId == foundRestaurant.postedBy) {
+        res.render('restaurants/edit.ejs', {
+          restaurant: foundRestaurant,
+          session: req.session
+        });
+      } else {
+        res.send('You don\'t have permission to do that!');
+      }
    } catch (err){
      res.send(err);
    }
-  });
+});
 
 // put
 router.put('/:id', async (req, res) => {
     try  {
    
     const updatedRestaurant = await Restaurant.findByIdAndUpdate(req.params.id, req.body, {new: true});
-    // console.log(updatedRestaurant);
   
-    res.redirect('/restaurants');
+    res.redirect('/restaurants#link-land');
 
     } catch (err){
       res.send(err);
@@ -62,7 +60,6 @@ router.get('/:id', async (req, res) => {
     try  {
   
      const foundRestaurant = await Restaurant.findById(req.params.id).populate('dishes').populate('postedBy');
-     console.log(foundRestaurant, '<--- foundResto on resto show route')     
      res.render('restaurants/show.ejs', {
        restaurant: foundRestaurant,
        session: req.session
@@ -78,11 +75,10 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     try {
      const createdRestaurant = await Restaurant.create(req.body);
-     console.log(createdRestaurant)
      const foundUser = await User.findById(req.session.userId);
      createdRestaurant.postedBy = foundUser._id;
      await createdRestaurant.save();
-     res.redirect('/restaurants');
+     res.redirect('/restaurants#link-land');
      
    } catch (err){
      console.log(err);
@@ -93,19 +89,18 @@ router.post('/', async (req, res) => {
 // delete
 router.delete('/:id', async (req, res) => {
   try {
-
-    const deletedRestaurant = await Restaurant.findOneAndDelete(req.params.id);
- 
- 
+    const restoDelete = await Restaurant.findById(req.params.id);
+    if (restoDelete.postedBy == req.session.userId) {
+      const deletedRestaurant = await Restaurant.findOneAndDelete(req.params.id);
       const deletedDishes = await Dish.deleteMany({
         _id: {
           $in: deletedRestaurant.dishes
         }
-      });
-
-      console.log(deletedDishes)
- 
-      res.redirect('/restaurants');
+      });  
+      res.redirect('/restaurants#link-land');
+    } else {
+      res.send('You don\'t have permission to do that!');
+    }
   } catch(err){
     res.send(err)
   }
