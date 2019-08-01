@@ -1,15 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const Restaurant = require('../models/Restaurant');
-const Dish = require('../models/Dish')
+const Dish = require('../models/Dish');
+const User = require('../models/User');
 
 // index
 router.get('/', async (req, res)=>{
-    console.log(req.session, 'req.session in index or dish')
+    console.log(req.session, 'req.session in index or dish');
     try {
       
       const foundRestaurants = await Restaurant.find();
-      
       res.render('restaurants/index.ejs', {
         restaurants: foundRestaurants,
         session: req.session
@@ -51,7 +51,7 @@ router.put('/:id', async (req, res) => {
     // console.log(updatedRestaurant);
   
     res.redirect('/restaurants');
-  
+
     } catch (err){
       res.send(err);
     }
@@ -62,7 +62,7 @@ router.get('/:id', async (req, res) => {
     try  {
   
      const foundRestaurant = await Restaurant.findById(req.params.id).populate('dishes').populate('postedBy');
-  
+     console.log(foundRestaurant, '<--- foundResto on resto show route')     
      res.render('restaurants/show.ejs', {
        restaurant: foundRestaurant,
        session: req.session
@@ -76,16 +76,18 @@ router.get('/:id', async (req, res) => {
 
 // post
 router.post('/', async (req, res) => {
-    try  {
+    try {
      const createdRestaurant = await Restaurant.create(req.body);
      console.log(createdRestaurant)
      const foundUser = await User.findById(req.session.userId);
+     console.log(req.session, '<-- req.session on resto post route');
+     //  console.log(foundUser);
      createdRestaurant.postedBy = foundUser._id;
      await createdRestaurant.save();
      res.redirect('/restaurants');
      
    } catch (err){
-     res.send(err);
+     console.log(err);
   
    }
   });

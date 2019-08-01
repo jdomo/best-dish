@@ -1,6 +1,5 @@
-<%- include('../partials/basicheader.ejs') %>   
+<%- include('../partials/basicheader.ejs', {pageTitle: 'Add a Restaurant'}) %>   
     <main>
-      <h1>Add a restaurant</h1>
       <form action="/restaurants" method="POST">
         <label>Name of restaurant:</label></br>
         <input type="text" name="name"></br>
