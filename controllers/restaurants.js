@@ -80,8 +80,6 @@ router.post('/', async (req, res) => {
      const createdRestaurant = await Restaurant.create(req.body);
      console.log(createdRestaurant)
      const foundUser = await User.findById(req.session.userId);
-     console.log(req.session, '<-- req.session on resto post route');
-     //  console.log(foundUser);
      createdRestaurant.postedBy = foundUser._id;
      await createdRestaurant.save();
      res.redirect('/restaurants');

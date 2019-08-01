@@ -34,14 +34,13 @@
   </header>
   <main class="index-container">
     <div class="index-header">
-
-    <div class="create-login">
-      <% if (session.logged) {%>
-      <a href="/dishes/new">Create A New Dish</a>
-      <% } else { %>
-      <a href="/">Log in to add your dish!</a>
-      <% } %> 
-    </div>
+      <div class="create-login">
+        <% if (session.logged) {%>
+        <a href="/dishes/new">Create A New Dish</a>
+        <% } else { %>
+        <a href="/">Log in to add your dish!</a>
+        <% } %> 
+      </div>
     <div id="dish-card-container">
       <ul>
         <% for(let i = 0; i < dishes.length; i++){ %>

@@ -13,12 +13,12 @@
     <source src="final_5d422582a6363a0014c9fbc0_818152.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
-  <header>
+  <header id="dishes-index-nav">
     <nav>
       <div class="logged-in">
       <% if (session.username) { %>
-        <span>Hungry, <%=session.username%>?</span>
-        <a href="/auth/logout" id="logout">Log out</a>
+        <span>Hello, <%=session.username%>!</span>
+        <a href="/auth/logout">Log out</a>
       <% } %>
       <% if (session.message && !session.logged) { %>
         <span><%= session.message %></span>
@@ -33,14 +33,14 @@
   </header>
   <main class="index-container">
     <div class="index-header">
-      <h2>Restaurants</h2>
-  
-    <div id="restaurants-index-container">
+      <div class="create-login">
       <% if (session.logged) {%>
-        <a href="/restaurants/new">Add a restaurant</a>
-        <% } else { %>
-        <a href="/">Log in to add a restaurant!</a>
-        <% } %> 
+      <a href="/dishes/new">Add new restaurant</a>
+      <% } else { %>
+      <a href="/">Log in to add a restaurant!</a>
+      <% } %> 
+    </div>
+    <div id="restaurants-index-container">
       <ul class="restaurants">
       <% for (let i = 0; i < restaurants.length; i += 1) { %>
         <li>
