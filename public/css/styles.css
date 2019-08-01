@@ -190,6 +190,7 @@ img {
 
 #title-div {
   width: 50%;
+  min-width: 340px;
   margin: auto;
 }
 
