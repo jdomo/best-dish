@@ -112,8 +112,7 @@ router.delete('/:id', async (req, res) => {
 
 // put
 router.put('/:id', async (req, res) => {
-    try  {
-    
+    try  {  
     const updatedDish = await Dish.findByIdAndUpdate(req.params.id, req.body, {new: true});
 
     const findOldRestaurant = await Restaurant.findOne({'dishes': updatedDish.id});
