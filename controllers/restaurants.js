@@ -90,8 +90,9 @@ router.post('/', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   try {
     const restoDelete = await Restaurant.findById(req.params.id);
+    console.log(restoDelete, '<--- restoDelete');
     if (restoDelete.postedBy == req.session.userId) {
-      const deletedRestaurant = await Restaurant.findOneAndDelete(req.params.id);
+      const deletedRestaurant = await Restaurant.findByIdAndDelete(restoDelete._id);
       const deletedDishes = await Dish.deleteMany({
         _id: {
           $in: deletedRestaurant.dishes
