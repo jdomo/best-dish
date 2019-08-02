@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
-const connectionString = process.env.MONGODB_URI;
-// const connectionString = 'mongodb://localhost/foodblog';
+// const connectionString = process.env.MONGODB_URI;
+const connectionString = 'mongodb://localhost/foodblog';
 
 mongoose.connect(connectionString, {
   useNewUrlParser: true,

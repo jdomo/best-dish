@@ -47,7 +47,7 @@ router.put('/:id', async (req, res) => {
     try  {
    
     const updatedRestaurant = await Restaurant.findByIdAndUpdate(req.params.id, req.body, {new: true});
-  
+    
     res.redirect('/restaurants#link-land');
 
     } catch (err){
